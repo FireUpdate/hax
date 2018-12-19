@@ -1,86 +1,115 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.on('message',async msg => {//mrx
-    if(msg.channel.type === "dm") return;//mrx
-    if(msg.author.bot) return;//mrx
-    if(msg.content.startsWith(prefix + "#c.t")) {//mrx
-    if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('? **يجب ان تمتلك رتبه **');//mrx
-    if(!msg.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return msg.reply('? **البوت لا يمتلك صلاحية**');//mrx
-    var kk = msg.guild.createChannel('Info', 'category').then(kk => {//mrx
-    var v = msg.guild.createChannel('Welcome', 'text').then(v => {//mrx
-    var d = msg.guild.createChannel('Chat', 'text').then(d => {//mrx
-    var f = msg.guild.createChannel('bot', 'text').then(f => {//mrx
-    var r = msg.guild.createChannel('bo7', 'text').then(r => {//mrx
-    var a = msg.guild.createChannel('pic', 'text').then(a => {//mrx
-    var q = msg.guild.createChannel('cut', 'text').then(q => {//mrx
-    var j = msg.guild.createChannel('log', 'text').then(j => {//mrx
-    var m = msg.guild.createChannel('admin-chat', 'text').then(m => {//mrx
-      v.setParent(kk);//mrx
-      d.setParent(kk);//mrx
-      f.setParent(kk);//mrx
-      r.setParent(kk);//mrx
-      a.setParent(kk);//mrx
-      q.setParent(kk);//mrx
-      j.setParent(kk);//mrx
-      m.setParent(kk);// mrx
-      msg.channel.sendMessage('**Channels Text Done**')//mrx
-    })//mrx
-  
-  })//mrx
-})//mrx
-})
-})
-    })//mrx
-  })//mrx
-})
-    })//mrx
 
-}
+
+client.on('guildMemberAdd', member => {
+     const welcomer =  member.guild.channels.find('name', 'chat');
+    if(!welcomer) return;
+      if(welcomer) {
+         moment.locale('ar-ly');
+         var m = member.user;
+        let yumz = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(m.avatarURL)
+        .setAuthor(m.username,m.avatarURL)
+        .addField(': تاريخ دخولك الدسكورد',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)            
+      
+         .setFooter(`${m.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
+     welcomer.send({embed:yumz});          
+         
+    
+
+
+
+const w = ['./w1.png'];
+
+         let Image = Canvas.Image,
+            canvas = new Canvas(400, 200),
+            ctx = canvas.getContext('2d');
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 200);
+             
+          
+
+                let url = member.user.displayAvatarURL.endsWith(".webp") ? member.user.displayAvatarURL.slice(100) + ".png" : member.user.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                        
+                        ctx.font = "bold 12px Arial";
+                        ctx.fontSize = '20px';
+                        ctx.fillStyle = "#f1f1f1";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`welcome to ${member.guild.name}`, 300, 130);
+                        
+                        ctx.font = "bold 12px Arial";
+                        ctx.fontSize = '20px';
+                        ctx.fillStyle = "#f1f1f1";
+                        ctx.textAlign = "center";
+                        ctx.fillText(member.user.username, 200, 150);
+ 
+                let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(77, 101, 62, 0, Math.PI*2);
+                              ctx.stroke();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 13, 38, 128, 126);  
+                          
+                
+                             
+welcomer.sendFile(canvas.toBuffer())
+
+
+
+      
+      
+                    }  )  
+      
+                    
+
+})
+      });                    
+ }
+});
+
+    
+client.on('guildMemberAdd', member => {
+  
+  const channel = member.guild.channels.find(ch => ch.name === 'chat');
+ 
+  if (!channel) return;
+
+  channel.send(`Welcome To Server, ${member}`);
+});
+
+const invites = {};
+const wait = require('util').promisify(setTimeout);
+client.on('ready', () => {
+  wait(1000);
+
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
+    });
+  });
+});
+client.on('guildMemberAdd', member => {
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const yumz = member.guild.channels.find("name", "chat");
+     yumz.send(`<@${member.user.id}> joined by <@${inviter.id}>`);
+   //  yumz.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  }); 
 });
 
 
-client.on('message',async msg => {
-    if(msg.channel.type === "dm") return;
-    if(msg.author.bot) return;//mrx
-    if(msg.content.startsWith(prefix + "#c.v")) {
-    if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('? **يجب ان تمتلك رتبه **');//mrx
-    if(!msg.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return msg.reply('? **البوت لا يمتلك صلاحية**');//mrx
-    var dd = msg.guild.createChannel('▬▬▬Public▬▬▬', 'category').then(dd => {//mrx
-    var cc = msg.guild.createChannel('♧ Ξ〖 🎤  سواليف 📣  〗', 'voice').then(cc => {//mrx
-    var ee = msg.guild.createChannel('♢ Ξ〖 🎤 مواهب 🎵  〗', 'voice').then(ee => {//mrx
-    var ss = msg.guild.createChannel('❋ Ξ〖 🎈فعاليات 🏅 〗', 'voice').then(ss => {//mrx
-    var gg = msg.guild.createChannel('❋ Ξ〖  🕋 القرآن الكريم  〗', 'voice').then(gg => {
-    var kk = msg.guild.createChannel('▬▬▬Private▬▬▬', 'category').then(kk => {//mrx
-    var v = msg.guild.createChannel('✿Tow✿', 'voice').then(v => {
-    var d = msg.guild.createChannel('✿Three✿', 'voice').then(d => {
-    var f = msg.guild.createChannel('✿Four✿', 'voice').then(f => {
-    var r = msg.guild.createChannel('✿Five✿', 'voice').then(r => {//mrx
-    var a = msg.guild.createChannel('✿Six✿', 'voice').then(a => {
-      v.setParent(kk);
-      d.setParent(kk);//mrx
-      f.setParent(kk);//mrx
-      r.setParent(kk);
-            // part 2
-      a.setParent(dd);//mrx
-      ee.setParent(dd);
-      cc.setParent(dd);
-      ss.setParent(dd);//mrx//mrx
-      gg.setParent(dd);
-      a.setParent(dd);//mrx
-      msg.channel.sendMessage('**Channels Voice Done**')//mrx
-    })//mrx//mrx//mrx
-  
-})
-})
-})
-})
-  })
-})
-})
-  })
-})
-    })
-
-}
-});
-  client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
