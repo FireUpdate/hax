@@ -14,6 +14,11 @@ const prefix = "p";
 let done = {};
 
 
+client.on("ready", async () => {
+  console.log(`${client.user.username} is online on ${client.guilds.size} servers!`);
+  client.user.setActivity(`Under Development!` , {type: "PLAYING"});
+});
+
 client.on('guildMemberAdd', member => {
      const welcomer =  member.guild.channels.find('name', 'chat');
     if(!welcomer) return;
