@@ -1,5 +1,17 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const convert = require("hh-mm-ss")
+const dateFormat = require('dateformat');
+const fs = require('fs');
+const pretty = require('pretty-ms');
+const rn = require('random-number');
+const moment = require('moment');
+const Canvas = require('canvas')
+const jimp = require('jimp')
+const sql = require('sqlite')
+const ytdl = require("ytdl-core");
+const prefix = "p";
+let done = {};
 
 
 client.on('guildMemberAdd', member => {
@@ -17,7 +29,8 @@ client.on('guildMemberAdd', member => {
          .setFooter(`${m.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
      welcomer.send({embed:yumz});          
          
-    
+      var Canvas = require('canvas')
+      var jimp = require('jimp')
 
 
 
