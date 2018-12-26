@@ -24,7 +24,7 @@ client.on('guildMemberAdd', member => {
         .setColor('RANDOM')
         .setThumbnail(m.avatarURL)
         .setAuthor(m.username,m.avatarURL)
-        .addField(': تاريخ دخولك الدسكورد',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)            
+        .addField('apple',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)            
       
          .setFooter(`${m.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
      welcomer.send({embed:yumz});          
@@ -58,7 +58,7 @@ const w = ['./w1.png'];
                         ctx.fontSize = '20px';
                         ctx.fillStyle = "#f1f1f1";
                         ctx.textAlign = "center";
-                        ctx.fillText(`Welcome to ${member.guild.name}`, 300, 130);
+                        ctx.fillText(`Welcome to ${member.guild.name}`, 200, 150);
                         
                         ctx.font = "bold 12px Arial";
                         ctx.fontSize = '20px';
@@ -113,16 +113,4 @@ client.on('ready', () => {
     });
   });
 });
-client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const yumz = member.guild.channels.find("name", "chat");
-     yumz.send(`<@${member.user.id}> joined by <@${inviter.id}>`);
-   //  yumz.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  }); 
-});
-
-
 client.login(process.env.BOT_TOKEN);
