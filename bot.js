@@ -27,9 +27,8 @@ client.on('guildMemberAdd', member => {
          var m = member.user;
         let yumz = new Discord.RichEmbed()
         .setColor('RANDOM')
-        .setThumbnail(m.avatarURL)
         .setAuthor(m.username,m.avatarURL)
-        .addField('A', "B")
+        .addDescription(`**$m.username**, Welcome to **${member.guild.name}**!`)
         .setFooter(`${m.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
      welcomer.send({embed:yumz});          
          
@@ -62,7 +61,7 @@ const w = ['./w1.png'];
                         ctx.fontSize = '20px';
                         ctx.fillStyle = "#f1f1f1";
                         ctx.textAlign = "center";
-                        ctx.fillText(`Welcome to ${member.guild.name}`, 300, 150);
+                        ctx.fillText(`Welcome to ${member.guild.name}`, 250, 100);
                         
                         ctx.font = "bold 12px Arial";
                         ctx.fontSize = '20px';
