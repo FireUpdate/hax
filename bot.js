@@ -24,9 +24,8 @@ client.on('guildMemberAdd', member => {
         .setColor('RANDOM')
         .setThumbnail(m.avatarURL)
         .setAuthor(m.username,m.avatarURL)
-        .addField('apple',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)            
-      
-         .setFooter(`${m.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
+        .addField('A', "B")
+        .setFooter(`${m.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
      welcomer.send({embed:yumz});          
          
       var Canvas = require('canvas')
@@ -58,7 +57,7 @@ const w = ['./w1.png'];
                         ctx.fontSize = '20px';
                         ctx.fillStyle = "#f1f1f1";
                         ctx.textAlign = "center";
-                        ctx.fillText(`Welcome to ${member.guild.name}`, 200, 150);
+                        ctx.fillText(`Welcome to ${member.guild.name}`, 300, 150);
                         
                         ctx.font = "bold 12px Arial";
                         ctx.fontSize = '20px';
